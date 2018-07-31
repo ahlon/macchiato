@@ -60,11 +60,11 @@ public class SwaggerConfig { //implements EnvironmentAware
 	private ApiInfo apiInfo() {
 		Contact contact = new Contact("ahlon", "https://github.com/ahlon", "ahlon2002@gmail.com");  
         return new ApiInfoBuilder()  
-                .title("Latte Api Documentation")  
-                .description("latte")  
-                .license("Apache License Version 2.0")  
-                .contact(contact)  
-                .version("1.0")  
-                .build();  
+                .title("Macchiato Api Documentation")  
+//                .description("Macchiato")  
+//                .license("Apache License Version 2.0")  
+//                .contact(contact)  
+//                .version("1.0")  
+                .build();
     }  
 }
