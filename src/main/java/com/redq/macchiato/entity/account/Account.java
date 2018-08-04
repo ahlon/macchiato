@@ -14,6 +14,16 @@ public class Account extends BaseEntity {
 	private Long userId;
 	
 	private BigDecimal balance;
+	
+	private BigDecimal frozenBalance;
+
+	public BigDecimal getFrozenBalance() {
+		return frozenBalance;
+	}
+
+	public void setFrozenBalance(BigDecimal frozenBalance) {
+		this.frozenBalance = frozenBalance;
+	}
 
 	public Long getUserId() {
 		return userId;
