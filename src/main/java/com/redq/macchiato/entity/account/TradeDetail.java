@@ -18,6 +18,16 @@ public class TradeDetail {
 	private TradeType type;
 	
 	private BigDecimal amount;
+	
+	private BigDecimal balance;
+
+	public BigDecimal getBalance() {
+		return balance;
+	}
+
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
 
 	public Long getUserId() {
 		return userId;
