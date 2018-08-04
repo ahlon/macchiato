@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.redq.macchiato.entity.BaseEntity;
+
 @Entity
 @Table(name = "ca_cart_item")
-public class CartItem {
+public class CartItem extends BaseEntity {
 	
 	private Long userId;
 	
@@ -17,7 +19,7 @@ public class CartItem {
 	
 	private BigDecimal latestPrice;
 	
-	private CartItemTraceType statut;
+	private CartItemStatus statut;
 
 	public Long getUserId() {
 		return userId;
@@ -51,12 +53,12 @@ public class CartItem {
 		this.latestPrice = latestPrice;
 	}
 
-	public CartItemTraceType getStatut() {
+	public CartItemStatus getStatut() {
 		return statut;
 	}
 
-	public void setStatut(CartItemTraceType statut) {
+	public void setStatut(CartItemStatus statut) {
 		this.statut = statut;
 	}
-	
+
 }

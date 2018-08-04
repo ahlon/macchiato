@@ -3,9 +3,11 @@ package com.redq.macchiato.entity.user;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.redq.macchiato.entity.BaseEntity;
+
 @Entity
 @Table(name = "u_user_like")
-public class UserLike {
+public class UserLike extends BaseEntity {
 	
 	private Long userId;
 	

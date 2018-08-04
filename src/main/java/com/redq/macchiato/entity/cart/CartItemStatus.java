@@ -1,5 +1,5 @@
 package com.redq.macchiato.entity.cart;
 
-public enum CartItemTraceType {
+public enum CartItemStatus {
 	 DELETED, FAVORITE, ORDER
 }
