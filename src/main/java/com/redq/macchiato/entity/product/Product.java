@@ -1,19 +1,22 @@
 package com.redq.macchiato.entity.product;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.redq.macchiato.entity.BaseEntity;
 
+@Entity
+@Table(name = "pd_product")
 public class Product extends BaseEntity {
 	
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
-	
 	private String name;
-	
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

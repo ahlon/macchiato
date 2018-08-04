@@ -1,16 +1,13 @@
 package com.redq.macchiato.entity.user;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.redq.macchiato.entity.BaseEntity;
 
+@Entity
+@Table(name = "ur")
 public class UserAddress extends BaseEntity {
-	
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
 	
 	private Long userId;
 	
@@ -23,16 +20,6 @@ public class UserAddress extends BaseEntity {
 	private Long street;
 	
 	private boolean primary;
-	
-	
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Long getUserId() {
 		return userId;

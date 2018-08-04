@@ -1,16 +1,11 @@
 package com.redq.macchiato.entity.user;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import com.redq.macchiato.entity.BaseEntity;
 
 @Entity
-public class UserWechat {
-	
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
+public class UserWechat extends BaseEntity {
 	
 	private Long userId;
 	
@@ -26,14 +21,6 @@ public class UserWechat {
 	
 	private String city;
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Long getUserId() {
 		return userId;
 	}

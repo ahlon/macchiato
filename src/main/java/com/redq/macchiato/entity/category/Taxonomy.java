@@ -4,10 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.redq.macchiato.entity.BaseEntity;
 
 @Entity
+@Table(name = "ct_taxonomy")
 public class Taxonomy extends BaseEntity {
 	
 	@Id
