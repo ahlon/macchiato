@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import com.redq.macchiato.entity.BaseEntity;
 
 @Entity
-@Table(name = "u_address")
+@Table(name = "u_user_address")
 public class UserAddress extends BaseEntity {
 	
 	private Long userId;
@@ -19,7 +19,15 @@ public class UserAddress extends BaseEntity {
 	
 	private Long street;
 	
-	private boolean primary;
+	private boolean byDefault;
+	
+	public boolean isByDefault() {
+		return byDefault;
+	}
+
+	public void setByDefault(boolean byDefault) {
+		this.byDefault = byDefault;
+	}
 
 	public Long getUserId() {
 		return userId;
@@ -61,12 +69,6 @@ public class UserAddress extends BaseEntity {
 		this.street = street;
 	}
 
-	public boolean isPrimary() {
-		return primary;
-	}
 
-	public void setPrimary(boolean primary) {
-		this.primary = primary;
-	}
 	
 }

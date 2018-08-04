@@ -6,9 +6,11 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.redq.macchiato.entity.BaseEntity;
+
 @Entity
 @Table(name = "fi_withdraw_reqeust")
-public class WithdrawRequest {
+public class WithdrawRequest extends BaseEntity {
 	
 	private Long userId;
 	

@@ -3,9 +3,11 @@ package com.redq.macchiato.entity.product;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.redq.macchiato.entity.BaseEntity;
+
 @Entity
 @Table(name = "pd_inventory_history")
-public class InventoryHistory {
+public class InventoryHistory extends BaseEntity {
 	
 	private Long prodId;
 	

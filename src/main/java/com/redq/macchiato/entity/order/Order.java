@@ -6,9 +6,11 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.redq.macchiato.entity.BaseEntity;
+
 @Entity
 @Table(name = "o_order")
-public class Order {
+public class Order extends BaseEntity {
 	
 	private String orderNo;
 

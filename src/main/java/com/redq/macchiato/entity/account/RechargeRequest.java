@@ -6,9 +6,11 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.redq.macchiato.entity.BaseEntity;
+
 @Entity
 @Table(name = "fi_recharge_reqeust")
-public class RechargeRequest {
+public class RechargeRequest extends BaseEntity {
 	
 	private Long userId;
 	

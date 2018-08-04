@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.redq.macchiato.entity.BaseEntity;
+
 @Entity
 @Table(name = "fi_trade_detail")
-public class TradeDetail {
+public class TradeDetail extends BaseEntity {
 	
 	private Long userId;
 	
