@@ -2,14 +2,51 @@ package com.redq.macchiato.entity;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class BaseEntity {
 	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Long id;
+	
+	private Long createdBy;
+	
+	private Long updatedBy;
+	
 	private Date createdAt;
-	private Date udpatedAt;
+	
+	private Date updatedAt;
+	
 	private boolean deleted = false;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Long createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Long getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(Long updatedBy) {
+		this.updatedBy = updatedBy;
+	}
 
 	public Date getCreatedAt() {
 		return createdAt;
@@ -19,12 +56,12 @@ public class BaseEntity {
 		this.createdAt = createdAt;
 	}
 
-	public Date getUdpatedAt() {
-		return udpatedAt;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setUdpatedAt(Date udpatedAt) {
-		this.udpatedAt = udpatedAt;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	public boolean isDeleted() {
