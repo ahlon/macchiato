@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    password: ahlon
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/macchiato?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    username: root
+  jpa:
+    database: MYSQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  
+server:
+  port: 8081
