@@ -1,10 +1,12 @@
 package com.redq.macchiato.entity.user;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.redq.macchiato.entity.BaseEntity;
 
 @Entity
+@Table(name = "u_user_wechat")
 public class UserWechat extends BaseEntity {
 	
 	private Long userId;

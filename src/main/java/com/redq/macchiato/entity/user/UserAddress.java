@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import com.redq.macchiato.entity.BaseEntity;
 
 @Entity
-@Table(name = "ur")
+@Table(name = "u_address")
 public class UserAddress extends BaseEntity {
 	
 	private Long userId;
