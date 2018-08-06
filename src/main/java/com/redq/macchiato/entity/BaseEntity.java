@@ -2,6 +2,7 @@ package com.redq.macchiato.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,8 @@ public class BaseEntity {
 	
 	private Date updatedAt;
 	
-	private boolean deleted = false;
+	@Column(name = "deleted", nullable = false, columnDefinition="tinyint default 0")
+	private boolean deleted;
 
 	public Long getId() {
 		return id;

@@ -1,3 +1,5 @@
 spring:
   profiles:
     active: '@profiles.active@'
+  jta:
+    enabled: true
