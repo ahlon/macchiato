@@ -6,7 +6,8 @@ public final class LoggerUtils {
 
     public static final String LOGGER_RETURN = "_logger_return";
 
-    private LoggerUtils() {}
+    private LoggerUtils() {
+    }
 
     /**
      * 获取客户端ip地址

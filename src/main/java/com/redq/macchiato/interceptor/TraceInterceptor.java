@@ -1,5 +1,7 @@
 package com.redq.macchiato.interceptor;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,9 +18,9 @@ import com.redq.macchiato.util.LoggerUtils;
 
 public class TraceInterceptor implements HandlerInterceptor {
 	// 请求开始时间标识
-	private static final String LOGGER_SEND_TIME = "_send_time";
+	private static final String REQUEST_TIME = "_requset_time";
 	// 请求日志实体标识
-	private static final String LOGGER_ENTITY = "_logger_entity";
+	private static final String TRACE_ENTITY = "_logger_entity";
 
 	/**
 	 * 进入SpringMVC的Controller之前开始记录日志实体
@@ -34,30 +36,30 @@ public class TraceInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
 		// 创建日志实体
-		UserTrace logger = new UserTrace();
+		UserTrace trace = new UserTrace();
 		// 获取请求sessionId
 		String sessionId = request.getRequestedSessionId();
 		// 请求路径
 		String url = request.getRequestURI();
 		// 获取请求参数信息
-		String paramData = JSON.toJSONString(request.getParameterMap(),
+		String params = JSON.toJSONString(request.getParameterMap(),
 				SerializerFeature.DisableCircularReferenceDetect, SerializerFeature.WriteMapNullValue);
 		// 设置客户端ip
-		logger.setClientIp(LoggerUtils.getCliectIp(request));
+		trace.setClientIp(LoggerUtils.getCliectIp(request));
 		// 设置请求方法
-		logger.setMethod(request.getMethod());
+		trace.setMethod(request.getMethod());
 		// 设置请求类型（json|普通请求）
-		logger.setType(LoggerUtils.getRequestType(request));
+		trace.setType(LoggerUtils.getRequestType(request));
 		// 设置请求参数内容json字符串
-		logger.setParamData(paramData);
+		trace.setParams(params);
 		// 设置请求地址
-		logger.setUri(url);
+		trace.setUri(url);
 		// 设置sessionId
-		logger.setSessionId(sessionId);
+		trace.setSessionId(sessionId);
 		// 设置请求开始时间
-		request.setAttribute(LOGGER_SEND_TIME, System.currentTimeMillis());
+		request.setAttribute(REQUEST_TIME, System.currentTimeMillis());
 		// 设置请求实体到request内，方面afterCompletion方法调用
-		request.setAttribute(LOGGER_ENTITY, logger);
+		request.setAttribute(TRACE_ENTITY, trace);
 		return true;
 	}
 
@@ -75,21 +77,23 @@ public class TraceInterceptor implements HandlerInterceptor {
 		// 当前时间
 		long currentTime = System.currentTimeMillis();
 		// 请求开始时间
-		long time = Long.valueOf(request.getAttribute(LOGGER_SEND_TIME).toString());
+		long requestTime = Long.valueOf(request.getAttribute(REQUEST_TIME).toString());
 		// 获取本次请求日志实体
-		UserTrace UserTrace = (UserTrace) request.getAttribute(LOGGER_ENTITY);
-		// 设置请求时间差
-		UserTrace.setTimeConsuming(Integer.valueOf((currentTime - time) + ""));
+		UserTrace trace = (UserTrace) request.getAttribute(TRACE_ENTITY);
+		// 设置请求开始的时间
+		trace.setRequestTime(new Date(requestTime));
 		// 设置返回时间
-		UserTrace.setReturnTime(currentTime + "");
+		trace.setReturnTime(new Date(currentTime));
+		// 设置请求时间差
+		trace.setConsumingTime(Integer.valueOf((currentTime - requestTime) + ""));
 		// 设置返回错误码
-		UserTrace.setHttpStatusCode(status + "");
+		trace.setHttpStatusCode(status + "");
 		// 设置返回值
-		UserTrace.setReturnData(JSON.toJSONString(request.getAttribute(LoggerUtils.LOGGER_RETURN),
+		trace.setReturnData(JSON.toJSONString(request.getAttribute(LoggerUtils.LOGGER_RETURN),
 				SerializerFeature.DisableCircularReferenceDetect, SerializerFeature.WriteMapNullValue));
 		// 执行将日志写入数据库
-		UserTraceRepository loggerDAO = getDAO(UserTraceRepository.class, request);
-		loggerDAO.save(UserTrace);
+		UserTraceRepository userTraceRepo = getDAO(UserTraceRepository.class, request);
+		userTraceRepo.save(trace);
 	}
 
 	/**
